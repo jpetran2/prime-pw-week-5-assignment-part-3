@@ -1,23 +1,39 @@
+//  *****************  variable section
 console.log('***** Music Collection *****')
 let collection = [];
 
-function addToCollection( title1, artist1, yearPublished1 ) {
-    //console.log('adding to collection...');
+//  *****************  functions section
+
+function addToCollection( title1, artist1, yearPublished1, array ) {
     let record1 = {
         title: title1,
         artist: artist1,
         yearPublished: yearPublished1
     }
-    collection.push(record1);
+    array.push(record1);
     return record1;
 } //end addToCollection
 
-function showCollection(collection1) { 
-    console.log(`collection contains ${collection.length} items`);
-    if (collection1.length < 1) {
+function findByArtist( artist, array ) {
+    let results = [];
+    for (const object of array) { // cycling thru albums
+        for (const parameter of object) { // cycling thru parameters of albums
+            if (artist === parameter ) {
+                results.push(object); 
+            }
+        } // end param cycle
+    } // end album cycle
+    return results
+} // end findByArtist
+
+
+function showCollection(taco) { 
+    //it can be taco //also confusing myself with collection and numbers...
+    console.log(`collection contains ${taco.length} items`);
+    if (taco.length < 1) {
         return null
     }
-    for (const album of collection1) {
+    for (const album of taco) {
         console.log(album);
     }
 
@@ -25,14 +41,24 @@ function showCollection(collection1) {
     return null
 } //end logCollection 
 
+
+
+
+
+
+
+//  *****************  testing section
 showCollection(collection); //empty
-console.log(`adding Avicii's True, 2013` , addToCollection(`True`, `Avicii`, 2013) );
+console.log(`adding Avicii's True, 2013` , addToCollection(`True`, `Avicii`, 2013, collection) );
 showCollection(collection); //True by avicii, 2013
-console.log(`adding Avicii's Stories, 2015` , addToCollection(`Stories`, `Avicii`, 2015) );
-console.log(`adding Avicii's Tim, 2019 (RIP)` , addToCollection(`Tim`, `Avicii`, 2019) );
-console.log(`adding Kygo's Cloud Nine, 2016` , addToCollection(`Cloud Nine`, `Kygo`, 2016) );
-console.log(`adding Kygo's Kids in Love, 2017` , addToCollection(`Kids in Love`, `Kygo`, 2017) );
-console.log(`adding Kygo's Golden Hour, 2020` , addToCollection(`Golden Hour`, `Kygo`, 2020) );
+console.log(`adding Avicii's Stories, 2015` , addToCollection(`Stories`, `Avicii`, 2015, collection) );
+console.log(`adding Avicii's Tim, 2019 (RIP)` , addToCollection(`Tim`, `Avicii`, 2019, collection) );
+console.log(`adding Kygo's Cloud Nine, 2016` , addToCollection(`Cloud Nine`, `Kygo`, 2016, collection) );
+console.log(`adding Kygo's Kids in Love, 2017` , addToCollection(`Kids in Love`, `Kygo`, 2017, collection) );
+console.log(`adding Kygo's Golden Hour, 2020` , addToCollection(`Golden Hour`, `Kygo`, 2020, collection) );
+showCollection(collection); //6 items
 
+findByArtist('Kygo', collection) //3 objs
 
+findByArtist('kygo', collection) //empty
 

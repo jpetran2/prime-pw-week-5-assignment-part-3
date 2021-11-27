@@ -16,12 +16,33 @@ function addToCollection( title1, artist1, yearPublished1, array ) {
 
 function findByArtist( artist, array ) {
     let results = [];
+    for (let i = 0; i < array.length; i++) {
+        if (artist === array[i].artist) {
+            results.push(array[i]);
+        }   
+    }
+    
+
+
+
+
+
+
+
+    /* saving for later...didnt work
     let i = 0;
-    for (const [title,artist1,year] of array) { // cycling thru albums
-        if (artist1 === artist )
+    
+    for (let [title, artist1, year] of Object.entries(array)) { // cycling thru albums
+        if (artist === artist1 ) {
             results.push(array[i]); 
+            console.log('i found one');
+            i++;
         }
-    i++;
+        else {
+        console.log(`none found`);
+        }
+    }
+    console.log(i); */
     return results
 } // end findByArtist
 
@@ -57,7 +78,7 @@ console.log(`adding Kygo's Kids in Love, 2017` , addToCollection(`Kids in Love`,
 console.log(`adding Kygo's Golden Hour, 2020` , addToCollection(`Golden Hour`, `Kygo`, 2020, collection) );
 showCollection(collection); //6 items
 
-findByArtist('Kygo', collection) //3 objs
+console.log(`Kygo albums in collection include:`, findByArtist('Kygo', collection)); //3 objs
 
-findByArtist('kygo', collection) //empty
+console.log(`Avicii albums in collection include:`, findByArtist('Avicii', collection)); //3 objs
 

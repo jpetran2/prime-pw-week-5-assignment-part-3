@@ -44,47 +44,79 @@ function search(searchTitle, searchArtist, searchYear, array) {
         artist: searchArtist,
         yearPublished: searchYear
     } // end parameter
-
-    //empty search parameter
-    if (parameter.artist === '' && parameter.artist === '' && parameter.yearPublished === '') {
-        return array
-    }//end empty return
     
     //actual searching area
     if (parameter.title != '') {
         titleResult= searchSingleParam (parameter.title,array);
-        console.log(`title results:`, titleResult);
         findlbum = true;
     }
     if (parameter.artist != '') {
         artistResult = searchSingleParam (parameter.artist,array);
-        console.log(`artist results:`,artistResult);
         findArtist = true;
     }
     if (parameter.yearPublished != '') {
         yearResult = searchSingleParam (parameter.yearPublished,array);
-        console.log(`year results:`,yearResult);
         findYear = true;
     } //end search area
 
     //return section
-    if (findTitle) {
+    if (findTitle) { 
         if (findArtist) {
             if (findYear) {
-                //result= //math it out...
+                //all 3
+                for (const object1 of titleResult) {
+                    for (const object2 of artistResult) {
+                        for (const object3 of yearResult) {
+                            if (object1 === object2 === object3)
+                            result.push(object1);
+                        }
+                    }
+                }
+            return result    
             }
-            //foo
-        }
+            //title & artist
+            for (const object1 of titleResult) {
+                for (const object2 of artistResult) {
+                    if (object1 === object2)
+                    result.push(object1);
+                }
+            }
+            return result
+
+        } else if (findYear) {
+            //title & year
+            for (const object1 of titleResult) {
+                for (const object3 of yearResult) {
+                    if (object1 === object3)
+                    result.push(object1);
+                }
+            }
+            return result   
+        } else {
+        //only title
         return titleResult
+        }
     } else if (findArtist) {
         if (findYear) {
-            //combine
+            //artist & year
+            for (const object2 of artistResult) {
+                for (const object3 of yearResult) {
+                    if (object2 === object3)
+                    result.push(object2);
+                }
+            }
+            return result   
         }
+        //only artist
         return artistResult
 
     } else if (findYear) {
+        //only year
         return yearResult
 
+    }   else {
+        //blank search
+        return array
     }
 
 

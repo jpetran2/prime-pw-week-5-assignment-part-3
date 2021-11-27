@@ -9,7 +9,7 @@ function addToCollection( title1, artist1, yearPublished1, array ) {
         title: title1,
         artist: artist1,
         yearPublished: yearPublished1
-    }
+    } //end record1
     array.push(record1);
     return record1;
 } //end addToCollection
@@ -19,27 +19,95 @@ function findByArtist( artist, array ) {
     for (let i = 0; i < array.length; i++) {
         if (artist === array[i].artist) {
             results.push(array[i]);
-        }   
-    }
+        }   //end if
+    } //end for
     return results
 } // end findByArtist
 
 //********************* stretch goal
-function search(searchAlbum, searchArtist, searchYear, array) {
+function search(searchTitle, searchArtist, searchYear, array) {
+
+    //results & tracking var declaration
+    let result = [];
+    let findTitle = false;
+    let findArtist = false;
+    let findYear = false;
+    let titleResult = [];
+    let artistResult = [];
+    let yearResult = [];
+
+    //end var declaration
+
     //create search parameter based on inputs
     let parameter = {
-        title: searchAlbum,
+        title: searchTitle,
         artist: searchArtist,
         yearPublished: searchYear
     } // end parameter
+
     //empty search parameter
     if (parameter.artist === '' && parameter.artist === '' && parameter.yearPublished === '') {
         return array
+    }//end empty return
+    
+    //actual searching area
+    if (parameter.title != '') {
+        titleResult= searchSingleParam (parameter.title,array);
+        console.log(`title results:`, titleResult);
+        findlbum = true;
+    }
+    if (parameter.artist != '') {
+        artistResult = searchSingleParam (parameter.artist,array);
+        console.log(`artist results:`,artistResult);
+        findArtist = true;
+    }
+    if (parameter.yearPublished != '') {
+        yearResult = searchSingleParam (parameter.yearPublished,array);
+        console.log(`year results:`,yearResult);
+        findYear = true;
+    } //end search area
+
+    //return section
+    if (findTitle) {
+        if (findArtist) {
+            if (findYear) {
+                //result= //math it out...
+            }
+            //foo
+        }
+        return titleResult
+    } else if (findArtist) {
+        if (findYear) {
+            //combine
+        }
+        return artistResult
+
+    } else if (findYear) {
+        return yearResult
+
     }
 
 
-    
+    //end return section
+
+ 
 } //end search
+
+function searchSingleParam (param, array) { //this search is property-agnostic
+    let result = [];
+    for (let i = 0; i < array.length; i++) { //steps thru albums
+    const element = array[i];
+    let objArray = Object.values(element); //converts element obj to array objArray
+        for (let index = 0; index < objArray.length; index++) { //steps thru properties of objArray
+            const element = objArray[index];
+            if ( param === element ) { //checks if parameter is same as individual property
+                result.push(array[i])
+            }
+        }
+    } //end for
+    return result
+} //end searchSingleParam
+
 //********************* end stretch goal
 
 function showCollection(taco) { 
@@ -47,10 +115,10 @@ function showCollection(taco) {
     console.log(`collection contains ${taco.length} items`);
     if (taco.length < 1) {
         return null
-    }
+    } //end if
     for (const album of taco) {
         console.log(album);
-    }
+    } //end for
 
     
     return null
@@ -81,3 +149,4 @@ console.log(`Tiesto albums in collection include:`, findByArtist('Tiesto', colle
 
 console.log('blank search result:', search('','','',collection));//should just return collection
 
+console.log(`albums made in 2016:`, search('','',2016, collection));

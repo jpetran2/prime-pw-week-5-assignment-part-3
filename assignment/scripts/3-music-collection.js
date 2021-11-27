@@ -4,9 +4,9 @@ let collection = [];
 function addToCollection( title1, artist1, yearPublished1 ) {
     console.log('adding to collection...');
     let record1 = {
-        title = title1,
-        artist = artist1,
-        yearPublished = yearPublished1
+        title: title1,
+        artist: artist1,
+        yearPublished: yearPublished1
     }
     collection.push(record1);
     return record1;

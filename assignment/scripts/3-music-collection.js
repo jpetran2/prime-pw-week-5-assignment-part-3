@@ -24,6 +24,23 @@ function findByArtist( artist, array ) {
     return results
 } // end findByArtist
 
+//********************* stretch goal
+function search(searchAlbum, searchArtist, searchYear, array) {
+    //create search parameter based on inputs
+    let parameter = {
+        title: searchAlbum,
+        artist: searchArtist,
+        yearPublished: searchYear
+    } // end parameter
+    //empty search parameter
+    if (parameter.artist === '' && parameter.artist === '' && parameter.yearPublished === '') {
+        return array
+    }
+
+
+    
+} //end search
+//********************* end stretch goal
 
 function showCollection(taco) { 
     //it can be taco //also confusing myself with collection and numbers...
@@ -59,4 +76,8 @@ showCollection(collection); //6 items
 console.log(`Kygo albums in collection include:`, findByArtist('Kygo', collection)); //3 objs
 
 console.log(`Avicii albums in collection include:`, findByArtist('Avicii', collection)); //3 objs
+
+console.log(`Tiesto albums in collection include:`, findByArtist('Tiesto', collection)); //empty
+
+console.log('blank search result:', search('','','',collection));//should just return collection
 

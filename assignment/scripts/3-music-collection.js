@@ -12,8 +12,12 @@ function addToCollection( title1, artist1, yearPublished1 ) {
     return record1;
 } //end addToCollection
 
-function logC() { //I'm adding this because I want to call this rather than do console.log() over and over again
-    console.log(`collection is: ${collection}`);
+function logC(collection1) { //I'm adding this because I want to call this rather than do console.log() over and over again
+    console.log(`collection is`);
+    for (const album of collection1) {
+        console.log(`$album`);
+    }
+    
     return null
 } //end logCollection 
 

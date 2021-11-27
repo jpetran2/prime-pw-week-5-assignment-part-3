@@ -21,8 +21,7 @@ function findByArtist( artist, array ) {
         if (artist1 === artist )
             results.push(array[i]); 
         }
-        i++;
-    } // end album cycle
+    i++;
     return results
 } // end findByArtist
 

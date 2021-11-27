@@ -21,28 +21,6 @@ function findByArtist( artist, array ) {
             results.push(array[i]);
         }   
     }
-    
-
-
-
-
-
-
-
-    /* saving for later...didnt work
-    let i = 0;
-    
-    for (let [title, artist1, year] of Object.entries(array)) { // cycling thru albums
-        if (artist === artist1 ) {
-            results.push(array[i]); 
-            console.log('i found one');
-            i++;
-        }
-        else {
-        console.log(`none found`);
-        }
-    }
-    console.log(i); */
     return results
 } // end findByArtist
 

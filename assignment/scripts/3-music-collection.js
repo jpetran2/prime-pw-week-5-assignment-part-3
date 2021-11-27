@@ -16,12 +16,12 @@ function addToCollection( title1, artist1, yearPublished1, array ) {
 
 function findByArtist( artist, array ) {
     let results = [];
-    for (const object of array) { // cycling thru albums
-        for (const parameter of object) { // cycling thru parameters of albums
-            if (artist === parameter ) {
-                results.push(object); 
-            }
-        } // end param cycle
+    let i = 0;
+    for (const [title,artist1,year] of array) { // cycling thru albums
+        if (artist1 === artist )
+            results.push(array[i]); 
+        }
+        i++;
     } // end album cycle
     return results
 } // end findByArtist

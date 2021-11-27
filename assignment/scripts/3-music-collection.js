@@ -47,16 +47,19 @@ function search(searchTitle, searchArtist, searchYear, array) {
     
     //actual searching area
     if (parameter.title != '') {
-        titleResult= searchSingleParam (parameter.title,array);
-        findAlbum = true;
+        titleResult = searchSingleParam (parameter.title,array);
+        findTitle = true;
     }
     if (parameter.artist != '') {
         artistResult = searchSingleParam (parameter.artist,array);
         findArtist = true;
     }
-    if (parameter.yearPublished != ''|| parameter.yearPublished != null || parameter.yearPublished != 0) {
+    if (parameter.yearPublished === '' || parameter.yearPublished === null || parameter.yearPublished === 0) {
+        parameter.yearPublished = ''; //normalize this to blank
+        } else {
         yearResult = searchSingleParam (parameter.yearPublished,array);
         findYear = true;
+    
     } //end search area
 
     //return section
@@ -74,18 +77,20 @@ function search(searchTitle, searchArtist, searchYear, array) {
                         for (const object3 of yearResult) {
                             if (object1 === object2 === object3)
                             result.push(object1);
-                        }
-                    }
-                }
+                        }//end for obj3
+                    } //end for obj2
+                } //end for obj1
+            //return all 3
             return result    
             }
-            //title & artist
+            //title & artist only
             for (const object1 of titleResult) {
                 for (const object2 of artistResult) {
                     if (object1 === object2)
                     result.push(object2);
-                }
-            }
+                } //end for obj2
+            } //end for obj1
+            //return title & artist
             return result
 
         } else if (findYear) {
@@ -94,13 +99,12 @@ function search(searchTitle, searchArtist, searchYear, array) {
                 for (const object3 of yearResult) {
                     if (object1 === object3)
                     result.push(object1);
-                }
-            }
+                }//end for obj3
+            }//end for obj1
             return result   
-        } else {
+        } 
         //only title
         return titleResult
-        }
     } else if (findArtist) {
         if (findYear) {
             //artist & year
@@ -108,8 +112,8 @@ function search(searchTitle, searchArtist, searchYear, array) {
                 for (const object3 of yearResult) {
                     if (object2 === object3)
                     result.push(object2);
-                }
-            }
+                }//end for obj3
+            }//end for obj2
             return result   
         }
         //only artist
@@ -191,7 +195,8 @@ console.log('blank search result:', search('','','',collection));//should just r
 console.log(`albums made in 2019:`, search('','',2019, collection));
 console.log(`albums made by avicii in 2019:`, search('','Avicii',2019, collection));
 console.log(`albums called Cloud Nine made by Kygo in 2016:`, search('Cloud Nine','Kygo',2016, collection));
-console.log(`albums made by Avicii called Tim:`, search('Tim','Avicii','', collection));
-//this last test doesn't work for some reason
+console.log(`albums made by Kygo called Golden Hour:`, search('Golden Hour','Kygo',null, collection));
+//this last test doesn't work for some reason //had an extra else statement so would not display title only results
+
 
 

@@ -72,54 +72,66 @@ function search(searchTitle, searchArtist, searchYear, array) {
         if (findArtist) {
             if (findYear) {
                 //all 3
-                for (const object1 of titleResult) {
-                    for (const object2 of artistResult) {
-                        for (const object3 of yearResult) {
-                            if (object1 === object2 === object3) {
-                            result.push(object1);
-                            } //end if
-                        }//end for obj3
-                    } //end for obj2
-                } //end for obj1
-            //return all 3
-            return result    
+                for (let indexTitle = 0; indexTitle < titleResult.length; indexTitle++) {
+                    const elementTitle = titleResult[indexTitle];
+                    for (let indexArtist = 0; indexArtist < artistResult.length; indexArtist++) {
+                        const elementArtist = artistResult[indexArtist];
+                        for (let indexYear = 0; indexYear < yearResult.length; indexYear++) {
+                            const elementYear = yearResult[indexYear];
+                            if (elementTitle === elementArtist) {
+                                if (elementTitle  === elementYear) {
+                                    result.push(elementTitle);
+                                }
+                            }
+                        }
+                    }
+                }
+                //return all 3
+                return result    
             }
             //title & artist only
-            for (const object1 of titleResult) {
-                for (const object2 of artistResult) {
-                    if (object1 === object2) {
-                    result.push(object2);
-                    } //end if
-                } //end for obj2
-            } //end for obj1
-            //return title & artist
-            return result
-
+            for (let indexTitle = 0; indexTitle < titleResult.length; indexTitle++) {
+                const elementTitle = titleResult[indexTitle];
+                for (let indexArtist = 0; indexArtist < artistResult.length; indexArtist++) {
+                    const elementArtist = artistResult[indexArtist];
+                    if (elementTitle === elementArtist) {
+                        result.push(elementTitle);
+                    }
+                }
+            }
+            //return title & artist only
+            return result  
         } else if (findYear) {
             //title & year
-            for (const object1 of titleResult) {
-                for (const object3 of yearResult) {
-                    if (object1 === object3) {
-                    result.push(object1);
-                    } //end if
-                }//end for obj3
-            }//end for obj1
-            return result   
-        } 
+            for (let indexTitle = 0; indexTitle < titleResult.length; indexTitle++) {
+                const elementTitle = titleResult[indexTitle];
+                for (let indexYear = 0; indexYear < yearResult.length; indexYear++) {
+                    const elementYear = yearResult[indexYear];
+                    if (elementTitle === elementYear) {
+                        result.push(elementTitle);
+                    }
+                }
+            }
+            //return title & year only
+            return result    
+    } 
         //only title
         return titleResult
     } else if (findArtist) {
         if (findYear) {
             //artist & year
-            for (const object2 of artistResult) {
-                for (const object3 of yearResult) {
-                    if (object2 === object3) {
-                    result.push(object2);
-                    } //end if
-                }//end for obj3
-            }//end for obj2
-            return result   
-        }
+            for (let indexArtist = 0; indexArtist < artistResult.length; indexArtist++) {
+                const elementArtist = artistResult[indexArtist];
+                for (let indexYear = 0; indexYear < yearResult.length; indexYear++) {
+                    const elementYear = yearResult[indexYear];
+                    if (elementArtist === elementYear) {
+                        result.push(elementArtist);
+                    }
+                }
+            }
+            //return artist & year only
+            return result    
+    }
         //only artist
         return artistResult
 
@@ -184,7 +196,7 @@ console.log(`adding Avicii's Tim, 2019 (RIP)` , addToCollection(`Tim`, `Avicii`,
 console.log(`adding Kygo's Cloud Nine, 2016` , addToCollection(`Cloud Nine`, `Kygo`, 2016, collection) );
 console.log(`adding Kygo's Kids in Love, 2017` , addToCollection(`Kids in Love`, `Kygo`, 2017, collection) );
 console.log(`adding Kygo's Golden Hour, 2020` , addToCollection(`Golden Hour`, `Kygo`, 2020, collection) );
-console.log(`adding Kygo's album2, 2019` , addToCollection(`Album2`, `Kygo`, 2019, collection) );
+console.log(`adding Kygo's FakeAlbum3, 2019` , addToCollection(`FakeAlbum3`, `Kygo`, 2019, collection) );
 
 showCollection(collection); //6 items
 

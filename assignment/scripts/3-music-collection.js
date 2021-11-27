@@ -48,18 +48,23 @@ function search(searchTitle, searchArtist, searchYear, array) {
     //actual searching area
     if (parameter.title != '') {
         titleResult= searchSingleParam (parameter.title,array);
-        findlbum = true;
+        findAlbum = true;
     }
     if (parameter.artist != '') {
         artistResult = searchSingleParam (parameter.artist,array);
         findArtist = true;
     }
-    if (parameter.yearPublished != '') {
+    if (parameter.yearPublished != ''|| parameter.yearPublished != null || parameter.yearPublished != 0) {
         yearResult = searchSingleParam (parameter.yearPublished,array);
         findYear = true;
     } //end search area
 
     //return section
+    //blank return
+    if (parameter.title === '' && parameter.artist === '' && parameter.yearPublished === '') {
+        return array
+    } //end blank return
+
     if (findTitle) { 
         if (findArtist) {
             if (findYear) {
@@ -78,7 +83,7 @@ function search(searchTitle, searchArtist, searchYear, array) {
             for (const object1 of titleResult) {
                 for (const object2 of artistResult) {
                     if (object1 === object2)
-                    result.push(object1);
+                    result.push(object2);
                 }
             }
             return result
@@ -171,6 +176,8 @@ console.log(`adding Avicii's Tim, 2019 (RIP)` , addToCollection(`Tim`, `Avicii`,
 console.log(`adding Kygo's Cloud Nine, 2016` , addToCollection(`Cloud Nine`, `Kygo`, 2016, collection) );
 console.log(`adding Kygo's Kids in Love, 2017` , addToCollection(`Kids in Love`, `Kygo`, 2017, collection) );
 console.log(`adding Kygo's Golden Hour, 2020` , addToCollection(`Golden Hour`, `Kygo`, 2020, collection) );
+console.log(`adding Kygo's album2, 2019` , addToCollection(`Album2`, `Kygo`, 2019, collection) );
+
 showCollection(collection); //6 items
 
 console.log(`Kygo albums in collection include:`, findByArtist('Kygo', collection)); //3 objs
@@ -181,4 +188,10 @@ console.log(`Tiesto albums in collection include:`, findByArtist('Tiesto', colle
 
 console.log('blank search result:', search('','','',collection));//should just return collection
 
-console.log(`albums made in 2016:`, search('','',2016, collection));
+console.log(`albums made in 2019:`, search('','',2019, collection));
+console.log(`albums made by avicii in 2019:`, search('','Avicii',2019, collection));
+console.log(`albums called Cloud Nine made by Kygo in 2016:`, search('Cloud Nine','Kygo',2016, collection));
+console.log(`albums made by Avicii called Tim:`, search('Tim','Avicii','', collection));
+//this last test doesn't work for some reason
+
+

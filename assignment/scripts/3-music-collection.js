@@ -75,8 +75,9 @@ function search(searchTitle, searchArtist, searchYear, array) {
                 for (const object1 of titleResult) {
                     for (const object2 of artistResult) {
                         for (const object3 of yearResult) {
-                            if (object1 === object2 === object3)
+                            if (object1 === object2 === object3) {
                             result.push(object1);
+                            } //end if
                         }//end for obj3
                     } //end for obj2
                 } //end for obj1
@@ -86,8 +87,9 @@ function search(searchTitle, searchArtist, searchYear, array) {
             //title & artist only
             for (const object1 of titleResult) {
                 for (const object2 of artistResult) {
-                    if (object1 === object2)
+                    if (object1 === object2) {
                     result.push(object2);
+                    } //end if
                 } //end for obj2
             } //end for obj1
             //return title & artist
@@ -97,8 +99,9 @@ function search(searchTitle, searchArtist, searchYear, array) {
             //title & year
             for (const object1 of titleResult) {
                 for (const object3 of yearResult) {
-                    if (object1 === object3)
+                    if (object1 === object3) {
                     result.push(object1);
+                    } //end if
                 }//end for obj3
             }//end for obj1
             return result   
@@ -110,8 +113,9 @@ function search(searchTitle, searchArtist, searchYear, array) {
             //artist & year
             for (const object2 of artistResult) {
                 for (const object3 of yearResult) {
-                    if (object2 === object3)
+                    if (object2 === object3) {
                     result.push(object2);
+                    } //end if
                 }//end for obj3
             }//end for obj2
             return result   
@@ -198,5 +202,5 @@ console.log(`albums called Cloud Nine made by Kygo in 2016:`, search('Cloud Nine
 console.log(`albums made by Kygo called Golden Hour:`, search('Golden Hour','Kygo',null, collection));
 //this last test doesn't work for some reason //had an extra else statement so would not display title only results
 
-
+console.log(`albums called True made by Avicii in 2013:`, search('True','Avicii',2013, collection));
 
